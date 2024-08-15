@@ -34,6 +34,6 @@ def process_csv(input_filename, output_filename):
             txtfile.write("\n")
 
 # Exemplo de uso
-input_filename = 'exemplo.csv'
+input_filename = 'saida_combinada.csv'
 output_filename = 'resultado.txt'
 process_csv(input_filename, output_filename)

@@ -1,0 +1,79 @@
+MINI EP1 
+
+Hardware:
+1730:  Estudo de condutores e isolantes
+1804:  Criação da máquina de tear de Jacquard
+1868:  Criação do teclado QWERTY
+1886:  Criação do primeiro teclado
+1897:  Invenção do tubo de raios catódicos
+1904:  Criação dos tubos de vácuo
+1919:  Criação dos fones de ouvido
+1926:  1º Uso do Joystick Elétrico
+1943:  Criação do computador
+1945:  Construção do ENIAC (Electronic Numerical Integrator and Computer). Primeiro computador digital eletrônico de grande escala
+1947:  Criação do transistor que permitiu que os computadores fossem menores rápidos e eficientes
+1954:  Criação do Monitor
+1958:  Criação do Microchip
+1958:  Circuitos integrados
+1960:  Computadores com transistores
+1964:  Lançamento do primeiro videofone de sucesso ocidental Bell’s Mod I Picturephone. Só conseguia exibir imagens em preto e branco e a 30 frames por segundo por apenas quinze minutos.
+1966:  Computadores com circuitos integrados (CHIPs)
+1968:  Criação da Memória RAM
+1971:  Lançamento do primeiro microprocessador Intel 4004
+1971:  Lançamento do Intel 4004
+1971:  Computadores com microprocessadores (VLSI - Very Large Scale of Integration - Escala Muito Larga de Integração).
+1973:  Invenção do Telefone Celular
+1974:  Criação do  Altair 8880
+1975:  Criação da primeira câmera digital do mundo. Não possuía LCD e era necessário colocar a fita cassete (nas quais se formavam as imagens) em um reprodutor portátil ligado a um computador. O computador exibia a imagem em uma tela de TV.
+1976:  Supercomputador
+1977:  1º Joystick digital
+1977:  Criação do Smartwatch
+1977:  Lançamento do Apple II. Um dos primeiros computadores pessoais de sucesso comercial
+1978:  Criação do Microprocessador Intel 8086. Foi um dos primeiros microprocessadores de 16 bits
+1980:  Evolução dos Dispositivos de Armazenamento para SSD
+1981:  IBM lança o primeiro computador pessoal (PC)
+1981:  Criação do Notebook Osborne 1
+1990:  Laptops
+1991:  Criação do SSD
+1999:  Primeira GPU
+1999:  Criação roteador WIFI
+2000:  Lançamento do PlayStation 2
+2006:  Criação do Primeiro Macbook
+2006:  Lançamento do console Wii. É o console mais emblemático quando se trata de captação de movimentos do jogador pelos controles.
+2007:  Apple introduziu o primeiro SSD
+
+Software:
+1822:  Modelo da máquina diferencial de Babbage
+1837:  Primeiro programa por Ada Lovelace
+1843:  Ada Lovelace escreve um algoritmo para que a máquina analítica de Babbage pudesse computar a sequência de Bernoulli (o algoritmo é reconhecido pela academia científica como o primeiro programa de computador da história).
+1871:  Confecção da maquína analítica
+1945:  Criação do modelo arquitetura de Von Neumann
+1949:  Criação da Linguagem Assembly
+1950:  Criação das Linguagens de Programação de Alto Nível
+1954:  Criação da linguagem de programação Fortran
+1956:  Criação do sistema operacional da General Motors GM-NAA I/O. Primeiro sistema operacional a ser utilizado no computador IBM 704 (utilizado para calculos a larga escala).
+1957:  Criação da Linguagem FORTRAN, primeira linguagem de programação de alto nível.
+1958:  Utilização da fotolitografia
+1980:  Surgimento das Interfaces Gráficas de Usuário
+1985:  Lançamento do Microsoft Windows 1.0. Foi a primeira versão de um sistema operacional com interface gráfica (GUI) da Microsoft
+1988:  Lançamento do Programa Mathematica
+1989:  Criação do Python
+1989:  Lançamento do Microsoft Office. Inicialmente lançado com uma combinação de aplicativos de escritório
+1990:  Revolução da Internet e Desenvolvimento de Software para a Web
+1990:  Lançamento da primeira versão do Office
+1990:  Criação do WorldWideWeb (WWW) o primeiro navegador web
+1991:  Criação do Linux: Linus Torvalds desenvolveu o kernel do Linux
+1991:  Criação do Block Chain
+1995:  Lançamento do winrar
+1995:  Lançamento do Windows 95
+2000:  criação de novas linguagens e frameworks voltados para a criação de apps móveis
+2000:  Lançamento do jogo The Sims
+2001:  Lançamento do Windows XP
+2003:  Lançamento do software Skype. Permitiu contato entre usuários por mensagens e videoconferências.
+2004:  Criação do facebook
+2005:  Criação do Youtube. O aplicativo hospeda vídeos e é o mais utilizado para produção e consumo desse formato de mídia até hoje.
+2005:  Lançamento do Google Maps
+2007:  Lançamento do iOS da Apple
+2008:  Lançamento do Android
+2009:  Lançamento do WhatsApp
+2022:  Lançamento de Elden Ring
