@@ -1,0 +1,52 @@
+# run_tests.jl
+# Função correta para comparaçãofunction correta
+QuaseIgual(num1::Float64, num2::Float64, epsilon::Float64)::Bool
+    return abs(num1 - num2) <= epsilonend
+
+# Função de teste
+function testeQuaseIgual(QuaseIgualFunc, inputs)    
+    total_testes = length(inputs)
+    testes_passados = 0    falhas = []
+        for (num1, num2, epsilon) in inputs
+            resultado_correto = corretaQuaseIgual(num1, num2, epsilon)        
+            resultado_testado = QuaseIgualFunc(num1, num2, epsilon)
+            if resultado_correto != resultado_testado            
+                push!(falhas, (num1, num2, epsilon, resultado_correto, resultado_testado))
+            else            
+                testes_passados += 1
+            end    
+        end
+        return testes_passados, falhas
+end
+
+# Lista de arquivos para testar
+arquivos = [    "quase_igual1.jl",
+    "quase_igual2.jl",    "quase_igualN.jl"
+]
+# Test inputs
+inputs = [
+    (sin(pi / 4), 0.7071, 0.0001),    (cos(pi / 3), 0.5, 0.0001),
+    (tan(pi / 4), 1.0, 0.0001),    (sin(pi / 6), 0.5, 0.00001)  # False esperado
+]
+# Nome do arquivo de relatórionome_relatorio = "relatorio_teste.txt"
+# Abre o arquivo de relatório
+open(nome_relatorio, "w") do io    
+    for arquivo in arquivos
+        include(arquivo)        
+        # Extrai a função importada (supondo que todas tenham o mesmo nome)        
+        QuaseIgualFunc = eval(Symbol("QuaseIgual"))
+        # Executa os testes
+        testes_passados, falhas = testeQuaseIgual(QuaseIgualFunc, inputs)        
+        # Escreve no relatório        
+        write(io, "Arquivo testado: $arquivo\n")
+        write(io, "Testes passados: $testes_passados de $(length(inputs))\n")        
+        if length(falhas) > 0            
+            write(io, "Falhas:\n")
+            for (num1, num2, epsilon, esperado, obtido) in falhas                
+                write(io, "Teste com inputs (num1=$num1, num2=$num2, epsilon=$epsilon) falhou.\n")
+                write(io, "Esperado: $esperado, Obtido: $obtido\n")            
+            end
+        end        
+        write(io, "\n" * "-"^40 * "\n\n")    
+    end
+end
