@@ -34,9 +34,7 @@ class HeadStart {
     int n_vertices;
     std::vector<int> d; // discovery time 
     std::vector<int> f; // finishing time
-    int cur_time;
-  //private:
-    //int super_useful_info;
+    int cur_time; // used in dfs() function
 };
 
 #endif // #ifndef ARB_H
