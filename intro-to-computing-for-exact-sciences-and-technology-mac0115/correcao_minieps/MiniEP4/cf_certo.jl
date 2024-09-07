@@ -33,6 +33,17 @@ function verificaFibo()
     println("Teste 3: Fibo(5) == 5")
     println(Fibo(5) == 5 ? "Passou" : "Falhou")
 
+    println("Teste 4: Fibo(7) == 13")
+    println(Fibo(7) == 13 ? "Passou" : "Falhou")
+
+
+    println("Teste 5: Fibo(8) == 21")
+    println(Fibo(8) == 21 ? "Passou" : "Falhou")
+
+    println("Teste 6: Fibo(10) == 55")
+    println(Fibo(10) == 55 ? "Passou" : "Falhou")
+
+
     # Você pode adicionar mais testes para validar a função
 end
 
