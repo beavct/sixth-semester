@@ -18,3 +18,11 @@ Exercícios:
 - Aproximação e^x dado um número real x e um epsilon
     - Do cálculo: e^x = série de Taylor
     - Critério de parada: A contribuíção de num / den é menor do que o eps indicado, i.e., nossa aproximação já está dentro do limite toleado.
+
+
+O QUE VAI SER DADO EM AULA:
+
+1 - Fatorial
+2 - Aproximação da raiz
+3 - Verificar se um número é primo
+4 - Verificar se um número é palíndromo
