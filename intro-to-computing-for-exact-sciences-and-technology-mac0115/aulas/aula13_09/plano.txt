@@ -1,0 +1,20 @@
+Exercícios:
+
+- fatorial recursivo vs fatorial iterativo (while)
+    - OK
+
+- Verificar se um número é palíndromo
+    - Sucessivas divisões pegando o resto do número e reconstruindo em uma variável auxiliar 
+
+- Aproximação de raiz quadrada dado um x e um epsilon
+    - Método de Newton: baseado na ideia de melhorar iterativamente uma estimativa inicial da raiz quadrada até que a estimativa esteja suficientemente próxima do valor real.
+    - Estimativa inicial = x/2.0
+    - Fórmula de iteração: melhor_aprox = (aproximacao + x / aproximacao) / 2
+        A fórmula é derivada do método de Newton-Raphson, que busca encontrar o ponto onde a função f(y)=y²-x cruza o eixo x.
+        A iteração ajusta a estimativa para o ponto médio entre a estimativa atual (aproximacao) e o quociente de x dividido pela estimativa (x / aproximacao).
+    - Critério de parada: O loop while continua até que a diferença absoluta entre a nova estimativa (melhor_aproximacao) e a estimativa anterior (aproximacao) seja menor que o valor de epsilon. Isso garante que a aproximação seja precisa até a tolerância especificada.
+
+
+- Aproximação e^x dado um número real x e um epsilon
+    - Do cálculo: e^x = série de Taylor
+    - Critério de parada: A contribuíção de num / den é menor do que o eps indicado, i.e., nossa aproximação já está dentro do limite toleado.
