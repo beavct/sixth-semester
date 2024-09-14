@@ -14,9 +14,3 @@ function fatorial_iterativo(n::Int)
     end
     return resultado
 end
-
-#=
-num = parse(Int64, ARGS[1])
-println(fatorial_recursivo(num))
-println(fatorial_iterativo(num))
-=#

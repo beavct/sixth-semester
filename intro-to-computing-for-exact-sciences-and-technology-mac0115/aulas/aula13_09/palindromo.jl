@@ -1,17 +1,28 @@
-function palindromo(num::Int)
+function e_palindromo(n::Int64)
+    # Guarda os dígitos de n que ainda devem ser invertidos
+    aux = n
+    # Guarda a inversão do número n 
+    n_inv = 0
 
-    reverso=0
-    auxiliar=num_str
-    
-    while auxiliar>0
-        reverso = reverso*10 + auxiliar%10
-        auxiliar = auxiliar/10
+
+    # Continuamos o while enquanto ainda há números a serem invertidos
+    while aux > 0 
+        # Coloca o último dígito de aux na variável que guarda a inversão
+        resto = aux % 10
+        n_inv= n_inv * 10 + resto
+
+        # Retira o último dígito de aux
+        aux = div(aux,10)
     end
 
-    if reverse == num
-        println("O número $num é palíndromo")
+
+    if n == n_inv
+        println("O número $n é palíndromo")
     else
-        println("O número $num não é palíndromo")
-    end
+        println("O número $n não é palíndromo")
+    end 
 
 end
+
+num = parse(Int64,ARGS[1])
+e_palindromo(num)
