@@ -1,4 +1,4 @@
-function fatorial_recursivo(n::Int)
+function fatorial_recursivo(n::Int64)
     if n == 0 || n == 1
         return 1
     else
@@ -6,7 +6,7 @@ function fatorial_recursivo(n::Int)
     end
 end
 
-function fatorial_iterativo(n::Int)
+function fatorial_iterativo(n::Int64)
     resultado = 1
     while n > 1
         resultado *= n

@@ -23,6 +23,3 @@ function e_palindromo(n::Int64)
     end 
 
 end
-
-num = parse(Int64,ARGS[1])
-e_palindromo(num)
