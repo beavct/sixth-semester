@@ -6,7 +6,7 @@ function verifica_primo(num :: Int64)
     i=2
 
     # pode ser melhorado com i<=num/2
-    # ou também com num <= sqrt(num): baseado no fato que um número composto deve ter um fator menor ou igual a raiz desse número
+    # ou também com i<= sqrt(num): baseado no fato que um número composto deve ter um fator menor ou igual a raiz desse número
 
     while i<num
         if num % i == 0
