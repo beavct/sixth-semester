@@ -1,6 +1,6 @@
 # Função auxiliar para resolver o problema das Torres de Hanoi
 function hanoi_rec(n::Int64, dep::Int64, origem::String, auxiliar::String, destino::String) :: Int64
-    if n == 0
+    if n <= 0
         return 0
     end
     
@@ -25,10 +25,19 @@ end
 # Função principal para iniciar o cálculo das Torres de Hanoi
 function hanoi(n::Int64, dep::Int64) :: Nothing
     movs = hanoi_rec(n, dep, "A", "B", "C")
-    println("Foram precisos $movs movimentos")
+
+    if movs == 1
+        println("Foi preciso $movs movimento")
+    else
+        println("Foram precisos $movs movimentos")
+    end
 end
 
-# Chamada da função para testar
+#=
+    Chamada da função para testes
+    No terminal basta digitar > julia <n> <dep>
+    Sendo n um número natural e dep 0 ou 1
+=#
 n=parse(Int64,ARGS[1])
 dep=parse(Int64,ARGS[2])
 hanoi(n,dep)
