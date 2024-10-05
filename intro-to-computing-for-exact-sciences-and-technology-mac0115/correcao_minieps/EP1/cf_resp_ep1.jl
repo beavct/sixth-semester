@@ -26,7 +26,9 @@ end
 function hanoi(n::Int64, dep::Int64) :: Nothing
     movs = hanoi_rec(n, dep, "A", "B", "C")
 
-    if movs == 1
+    if movs == 0
+        println("Não foi preciso nenhum movimento")
+    elseif movs == 1
         println("Foi preciso $movs movimento")
     else
         println("Foram precisos $movs movimentos")
@@ -35,7 +37,8 @@ end
 
 #=
     Chamada da função para testes
-    No terminal basta digitar > julia <n> <dep>
+    No terminal basta digitar 
+    > julia cf_resp_ep1.jl <n> <dep>
     Sendo n um número natural e dep 0 ou 1
 =#
 n=parse(Int64,ARGS[1])
