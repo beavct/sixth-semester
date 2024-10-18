@@ -122,21 +122,22 @@ void dfs_cutvertex(Infos& info, int u, int p)
     int tree_edges=0;
     info.color[u]=1;
     info.lowlink[u] = info.d[u] = ++info.time;
+    bool is_cut_vertex=false;
 
     boost::graph_traits<Graph>::out_edge_iterator vectex_it, vectex_end;
     for (boost::tie(vectex_it, vectex_end) = boost::out_edges(u, info.G); vectex_it != vectex_end; ++vectex_it) 
     {
         Vertex v = boost::target(*vectex_it, info.G);
 
-        //if(info.S_set.find(std::make_pair(u, v)) == info.S_set.end() && 
-        //info.S_set.find(std::make_pair(v, u)) == info.S_set.end())
-        //{
-        //    info.S_set.insert(std::make_pair(u, v));
-        //}
-        //else
-        //{
-        //    continue;    
-        //}
+        if(info.S_set.find(std::make_pair(u, v)) == info.S_set.end() && 
+        info.S_set.find(std::make_pair(v, u)) == info.S_set.end())
+        {
+            info.S_set.insert(std::make_pair(u, v));
+        }
+        else
+        {
+            continue;    
+        }
 
 
         if((int)v == u)
@@ -151,31 +152,36 @@ void dfs_cutvertex(Infos& info, int u, int p)
 
             // Just reach vertices that came after u
             // i.e, there is no back arc
-            if(info.d[u] < info.lowlink[v])
+            info.lowlink[u] = std::min(info.lowlink[u], info.lowlink[v]);
+
+            if(info.d[u] <= info.lowlink[v] && p!=-1)
             {
                 info.G[u].cutvertex = true;
             }
 
-            info.lowlink[u] = std::min(info.lowlink[u], info.lowlink[v]);
         }
         else{
             // i.e, v is an ancestor
             info.lowlink[u] = std::min(info.lowlink[u], info.d[v]);
+
+            // The root children connects -> root isn't a cut vertex
+            if (p == -1) {
+                is_cut_vertex = true; 
+            }
         }
     }
 
     info.color[u]=2;
     info.f[u] = ++info.time;
 
-    if(u == p)
+    if(p==-1)
     {
-        info.G[u].cutvertex = tree_edges > 1;
+        info.G[u].cutvertex = (tree_edges > 1 && !is_cut_vertex);
     }
 
 }
 
 // Must fill the cutvertex field for each vertex correctly
-// PRECISA TESTAR 
 void debugging_level_1(Infos& info)
 {
     boost::graph_traits<Graph>::vertex_iterator vertex_it, vertex_end;
