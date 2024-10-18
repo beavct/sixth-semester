@@ -12,6 +12,8 @@ void biconnected_comp_visit(Infos& info, int u)
     info.color[u] = 1;
     info.d[u] = ++info.time;
 
+    //std::cout << "d["<<u+1<<"] = ll["<<u+1<<"]" << " = " << info.d[u] << "\n";
+
     // iterate over outgoing arcs
     boost::graph_traits<Graph>::out_edge_iterator vectex_it, vectex_end;
     for (boost::tie(vectex_it, vectex_end) = boost::out_edges(u, info.G); vectex_it != vectex_end; ++vectex_it) 
@@ -35,6 +37,7 @@ void biconnected_comp_visit(Infos& info, int u)
         }
         else if((int)v != info.pi[u] && ok)
         {
+            //std::cout << "v= " << v+1 << " já tinha sido visitado\n";
             ++info.nscc;
 
             std::pair<int, int> e;
@@ -53,6 +56,8 @@ void biconnected_comp_visit(Infos& info, int u)
                     info.G[edge].bcc = info.nscc;
                     //std::cout << "Atualizando bcc para a aresta " << e.first << "-" << e.second << " com valor " << info.G[edge].bcc << "\n";
                 }
+
+                //std::cout << "MUDANDO1 ll["<<u+1<<"]" << " = " << info.lowlink[u] << "\n";
 
             } while (e.first != (int)v); // Continue até encontrar a aresta que leva a v
 
@@ -129,6 +134,7 @@ void dfs_cutvertex(Infos& info, int u, int p)
     {
         Vertex v = boost::target(*vectex_it, info.G);
 
+        // Dont't repeat same edges
         if(info.S_set.find(std::make_pair(u, v)) == info.S_set.end() && 
         info.S_set.find(std::make_pair(v, u)) == info.S_set.end())
         {
@@ -152,12 +158,13 @@ void dfs_cutvertex(Infos& info, int u, int p)
 
             // Just reach vertices that came after u
             // i.e, there is no back arc
-            info.lowlink[u] = std::min(info.lowlink[u], info.lowlink[v]);
 
             if(info.d[u] <= info.lowlink[v] && p!=-1)
             {
                 info.G[u].cutvertex = true;
             }
+
+            info.lowlink[u] = std::min(info.lowlink[u], info.lowlink[v]);
 
         }
         else{
@@ -194,7 +201,6 @@ void debugging_level_1(Infos& info)
             dfs_cutvertex(info, u, -1);
         }
     }   
- 
 }
 
 // Every bridge must be a tree edge
@@ -212,9 +218,20 @@ void dfs_brigde(Infos& info, int u, int p)
             continue;
         }
 
+        // Dont't repeat same edges
+        if(info.S_set.find(std::make_pair(u, v)) == info.S_set.end() && 
+        info.S_set.find(std::make_pair(v, u)) == info.S_set.end())
+        {
+            info.S_set.insert(std::make_pair(u, v));
+        }
+        else
+        {
+            continue;    
+        }
+
         if(!info.color[v])
         {
-            dfs_cutvertex(info, v, u);
+            dfs_brigde(info, v, u);
 
             // Just reach vertices that came after u
             // i.e, there is no back arc
@@ -239,7 +256,6 @@ void dfs_brigde(Infos& info, int u, int p)
 }
 
 // Must fill the bridge field for each edge correctly
-// PRECISA TESTAR
 void debugging_level_2(Infos& info)
 {
     boost::graph_traits<Graph>::vertex_iterator vertex_it, vertex_end;
@@ -268,7 +284,6 @@ void compute_bcc (Graph &g, bool fill_cutvxs, bool fill_bridges)
     // debug mode 2
     else if(fill_bridges)
     {
-        info.nscc=0;
         debugging_level_2(info);
     }
     // debug mode 0
@@ -276,16 +291,4 @@ void compute_bcc (Graph &g, bool fill_cutvxs, bool fill_bridges)
     {
         debugging_level_0(info);
     }
-
-    //std::cout <<"\n\n";
-
-    /* fill everything with dummy values */
-    //for (const auto& vertex : boost::make_iterator_range(boost::vertices(g))) {
-    //    g[vertex].cutvertex = false;
-    //}
-//
-    //for (const auto& edge : boost::make_iterator_range(boost::edges(g))) {
-    //    //g[edge].bcc = 0;
-    //    g[edge].bridge = false;
-    //}
 }
