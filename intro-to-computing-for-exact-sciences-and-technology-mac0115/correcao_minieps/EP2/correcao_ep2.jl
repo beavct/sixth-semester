@@ -41,7 +41,7 @@ function plota_grafico(resultados::Vector{Int})
 
     # Definir intervalos
     intervalos = [0, 10000, 100000, 1000000, 10000000, 100000000]
-    y_label = ["10^0", "10^4", "10^5", "10^6", "10^7", "10^8"]
+    x_label = ["10^0", "10^4", "10^5", "10^6", "10^7", "10^8"]
     frequencias_intervalos = zeros(Int, length(intervalos) - 1)
 
     # Contar as frequências em intervalos
@@ -57,7 +57,7 @@ function plota_grafico(resultados::Vector{Int})
         end
     end
 
-    bar(y_label, frequencias_intervalos[1:end], color = [:lightsalmon, :tomato, :crimson, :firebrick, :darkred], xlabel="Número de Apostas", ylabel="Frequência", title="Distribuição do Número de Apostas", label="",  alpha = 0.8)
+    bar(x_label, frequencias_intervalos[1:end], color = [:lightsalmon, :tomato, :crimson, :firebrick, :darkred], xlabel="Número de Apostas", ylabel="Frequência", title="Distribuição do Número de Apostas", label="",  alpha = 0.8)
     
     # Salvar o gráfico como PNG
     savefig("distribuicao_apostas.png")
