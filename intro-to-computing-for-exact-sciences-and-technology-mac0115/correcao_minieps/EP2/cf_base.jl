@@ -11,7 +11,7 @@ using Plots
     entre 6 e 10.
 
     # Retorno
-    - Retorna um vetor de inteiros (`Vector{Int}`) contendo os números selecionados, 
+    - Devolve um vetor de inteiros (`Vector{Int}`) contendo os números selecionados, 
     ordenados em ordem crescente.
 
     # Exemplo
@@ -34,7 +34,7 @@ end
     entre 6 e 10.
 
     # Retorno
-    - Retorna um inteiro (`Int64`) representando o total de apostas realizadas até que 
+    - Devolve um inteiro (`Int64`) representando o total de apostas realizadas até que 
     todos os números selecionados sejam acertados.
 
     # Exemplo
@@ -59,7 +59,7 @@ end
     Função principal que coordena a execução do programa.
     A função deve definir os parâmetros necessários para a simulação, como o número máximo de seleções permitidas e o número de simulações a serem realizadas. 
     Ela invocará as funções necessárias, incluindo a simulação de apostas e a plotagem do gráfico de resultados. 
-    O objetivo é executar o fluxo completo do programa, desde a geração das apostas até a visualização dos resultados. A função não deve retornar nenhum valor.
+    O objetivo é executar o fluxo completo do programa, desde a geração das apostas até a visualização dos resultados. A função não deve devolver nenhum valor.
 =#
 function main()
 
