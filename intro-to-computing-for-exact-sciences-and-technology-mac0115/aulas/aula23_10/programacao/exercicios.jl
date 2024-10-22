@@ -1,4 +1,5 @@
 function twofirst_twolast(s::String)::String
+    # Se o tamanho for menor do que 2, não tem como pegar as duas primerias e as duas últimas
     if length(s) < 2
         return ""
     else
@@ -6,9 +7,19 @@ function twofirst_twolast(s::String)::String
     end
 end
 
+#println("Resultado: ", twofirst_twolast(ARGS[1]))
+
+##################################################
+
+# Se s termina com "ing" -> concatena "ly" no final
+# Caso contrário, concatena "ing"
+
+# Nesse caso olhamos a lista resultante de [end-3:end]
 function modify_string_manual(s::String)::String
+    # Se a palavra tem menos que 3 letras, não tem como olhar suas últimas 3 letras
     if length(s) < 3
         return s  
+    # end-2, pois ai eu começo a olhar do terceiro caracter de trás pra frente
     elseif s[end-2:end] == "ing"
         return s * "ly"  
     else
@@ -16,6 +27,7 @@ function modify_string_manual(s::String)::String
     end
 end
 
+# Usamos a função endswith()
 function modify_string_builtin(s::String)::String
     if length(s) < 3
         return s  
@@ -36,13 +48,30 @@ end
     println(modify_string("doing"))    
 =#
 
+##################################################
+
 #=
     Recebe uma string s e devolve uma string que contem as letras minúsculas de s primeiro e depois as maiúsculas, em ordem.
     Ex: s = "BoM diA"
         saída = "odiBMA"
 =#
+function arrange_case_manual1(s::String)::String
+    lowercase_letters = ""
+    uppercase_letters = ""
+    
+    # Falar da tabela ASCII
+    for c in s
+        if Int(c) >= 97
+            lowercase_letters *= c
+        else
+            uppercase_letters *= c
+        end
+    end
+    
+    return lowercase_letters * uppercase_letters
+end
 
-function arrange_case_manual(s::String)::String
+function arrange_case_manual2(s::String)::String
     lowercase_letters = ""
     uppercase_letters = ""
     
@@ -70,6 +99,12 @@ function arrange_case(s::String)::String
     return lowercase_letters * uppercase_letters
 end
 
+#s = ARGS[1]
+#println("Saída da função manual: ", arrange_case_manual(s))
+#println("Saída da função built-in: ", arrange_case(s))
+
+##################################################
+
 function reverse_string_manual(s::String)::String
     reversed = ""
     for i in length(s):-1:1
@@ -82,6 +117,13 @@ function reverse_string_builtin(s::String)
     return reverse(s)  # Usando a função reverse embutida
 end
 
+#s = ARGS[1]
+#println("Saída da função manual: ", reverse_string_manual(s))
+#println("Saída da função built-in: ", reverse_string_builtin(s))  
+
+##################################################
+
+# Recebe um vetor com várias palavras e retorna a maior, e seu tamanho
 function longest_word(words::Vector{String})
     longest = ""
     max_length = 0
@@ -96,16 +138,28 @@ function longest_word(words::Vector{String})
     return longest, max_length
 end
 
-#=
-    TESTE PARA LONGEST_WORD
+#print("Quantas palavras você quer testar? ")
+#n = parse(Int64, readline())
+#
+#palavras = String[]
+#
+#i = 0
+## Poderia ser um while
+#for i in 1:n
+##while i<n
+#    print("Digite a palavra: ")
+#    push!(palavras, readline())
+#    # pro julia parar de encher o sacoz
+#    #global i+=1
+#end
+#
+#maior_p, tamanho_p = longest_word(palavras)
+#println("Resultado: $maior_p ($tamanho_p)" )
 
-    words_list = ["apple", "banana", "cherry", "blueberry", "kiwi"]
-    longest, length_of_longest = longest_word(words_list)
-    println("Longest word: $longest, Length: $length_of_longest")
-=#
+##################################################
 
 # Função que busca uma substring em uma lista de strings de forma manual
-function grep_madein(substring::String, lines::Vector{String})
+function grep_builtin(substring::String, lines::Vector{String})
     # Inicializa um vetor para armazenar as linhas que contêm a substring
     matching_lines = String[]
 
@@ -144,30 +198,36 @@ end
 
 
 # Função que busca uma substring em uma lista de strings
-function grep_direto(substring::String, lines::Vector{String})
+function grep_manual(substring::String, lines::Vector{String})
+    # Filtra apenas as linhas que contém a substring
     return filter(line -> contains(line, substring), lines)
 end
 
-# Exemplo de uso
-function teste_grep()
-    # Lista de strings (pode ser substituída por qualquer input)
-    lines = [
-        "Aprendendo Julia é divertido.",
-        "A linguagem Julia é poderosa.",
-        "Esta é uma string de exemplo.",
-        "Grep em Julia é fácil de implementar."
-    ]
-
-    # Perguntar ao usuário pela substring
-    println("Digite a substring que deseja buscar:")
-    substring = readline()
-
-    # Chamar a função grep
-    resultados = grep(substring, lines)
-
-    # Exibir os resultados
-    println("Resultados da busca:")
-    for resultado in resultados
-        println(resultado)
-    end
-end
+#print("Quantas frases você deseja testar? ")
+#n = parse(Int64, readline())
+#
+#frases = String[]
+#
+#for i in 1:n
+#    print("Digite uma frase: ")
+#    push!(frases, readline())
+#end
+#
+#print("Qual substring você deseja buscar? ")
+#subs = readline()
+#
+#
+#res_m = grep_manual(subs, frases)
+#
+#res_b = grep_builtin(subs, frases)
+#
+#println("Resposta do manual: ")
+#for i in 1:length(res_m)
+#    println("$i: $(res_m[i])")
+#end
+#
+#
+#println("\nResposta do built-in: ")
+#for i in 1:length(res_b)
+#    println("$i: $(res_m[i])")
+#end

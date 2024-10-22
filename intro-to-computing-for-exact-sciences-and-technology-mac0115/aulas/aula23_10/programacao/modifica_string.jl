@@ -24,27 +24,3 @@ function modify_string_builtin(s::String)::String
         return s * "ing" 
     end
 end
-
-function compare_modify_string()
-    inputs = [
-        "a",            # Teste 1
-        "ab",           # Teste 2
-        "run",          # Teste 3
-        "ing",          # Teste 4
-        "running",      # Teste 5
-        "play",         # Teste 6
-        "swimming",     # Teste 7
-        "singing!",     # Teste 8
-        "!@#ing",       # Teste 9
-        "#hello",       # Teste 10
-        ""               # Teste 11
-    ]
-
-    for s in inputs
-        result_direct = modify_string_manual(s)
-        result_builtin = modify_string_builtin(s)
-        println("Input: '$s' => Manual: '$result_direct' | Built-in: '$result_builtin'")
-    end
-end
-
-compare_modify_string()

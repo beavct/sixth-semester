@@ -9,9 +9,11 @@ function arrange_case_manual(s::String)::String
     uppercase_letters = ""
     
     for c in s
-        if islowercase(c)
+        #if islowercase(c)
+        if Int(c) >= 97
             lowercase_letters *= c
-        elseif isuppercase(c)
+        #elseif isuppercase(c)
+        else
             uppercase_letters *= c
         end
     end
