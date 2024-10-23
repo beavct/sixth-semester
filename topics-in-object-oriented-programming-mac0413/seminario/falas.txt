@@ -1,0 +1,156 @@
+SLIDE 1:
+
+• Capítulo 9:
+    - As vezes é difícil saber quando dois pedaços de funcionalidades devem ser implementados juntos;
+    - Nem sempre dividir em pequenas componentes é uma boa solução, pois pode tornar mais difícil administrar as componentes e resultar em duplicação.
+
+    - Se dois pedaços de código estão relacionadas, ou seja, compartilham informação, são utilizadas juntas, se sobrepõem conceitualmente, precisam ser lidas juntas para serem compreendidas; então é implementá-las juntas.
+    
+    - Se um módulo contém um mecanismo que pode ser utilizados para diferentes propostas, então ele deve oferecer apenas esse único mecanismo de proposta geral.
+    - Ele não deve incluir código que especializa esse mecanismo para um uso particular e nem conter outros mecanismos de proposta geral.
+    - Geralmente as camadas mais baixas de um sistema tendem ser ser mais genéricas e as superiores mais especializadas.
+    - Misturar mecanismos de diferentes propostas gera perda de informação entre o mecanismo e o seu uso particular, além disso, futuras mudanças no caso de uso podem requerir mudanças no mecanismo geral.
+    - This code processes incoming network packets of different types; for each type, if the packet is too short for that type, a message gets logged. In this version of the code, the LOG statement is duplicated for several different packet types.
+    - A reorganization of the code from Figure 9.1 so that there is only one copy of the LOG statement.
+
+    - Só o tamanho do método não é uma boa justificativa para separa-lo ou junta-lo. Separar um método só faz sentido se resultará em abstrações mais claras.
+    - Exemplo:
+        - Suponha um método que tenha 5 blocos de 20 linhas cada, se os blocos são relativamente independentes e o método pode ser lido e entendido um bloco por vez, não tem porque separa-lo.
+        - Se os blocos tem iterações complexas, então é ainda melhor deixa-los juntos para que os leitores possam vê-lo todo de uma vez.
+        - Se o método tem muitas funcionalidades e tem uma interface simples, então não importa seu tamanho.
+
+    - No caso da imagem, o método (a) pode ser diminuido extraindo uma subtarefa (b).
+    - No caso (b), a subdivisão significa que o método filho não precisa saber nada sobre o método pai, e o método pai não precisa entender a implementação do método filho, ou seja, o método filho é relativamente genérico. Isso é bom, nesse caso a divisão faz sentido.
+    - No caso (c), a subdivisão faz sentido se o método original tem uma complexidade exacerbada, porque tenta fazer muitas coisas que não estão muito relacionadas.
+    - Idealmente, os "chamadores" devem invocar apenas um dos novos métodos, oque não acontece no caso (d).
+
+• Capítulo 10:
+    - Tratamentos e exceções contribuiem desproporcionalmente para complexidade.
+    - Métodos como o catch e throw, que retornando um valor indicado quando um método não completou sua computação de forma esperada.
+    - Código de tratamento e exceções é mais díficil de ser lido e escrito.
+    - O código que lida com exceções cria oportunidade para mais exceções.
+
+    - As vezes exceções são utilizadas para delegar a responsábilidade de lidar com o problema para quem invocou o método → as vezes quem invocou também não sabe o que fazer.
+    - Classes com muito exceções têm interfaces complexas e são mais superficiais do que classes com menos exceções.
+    - Uma exceção pode se propagar vários níveis depois de ter sido capturada, ou seja, pode prejudicar esses níveis.
+
+    - Definir suas APIs para que não haja esceções a serem tratadas.
+    - Exemplo: deletar arquivo no Windows e no Unix.
+
+    - Com essa técnica, uma condição de exceção é detectada e tratada em um nível baixo do sistema, para que as camada superiores não precisem lidar e nem ter consciência dessa condição.
+    - Comum em sistemas distribuídos.
+        - Protocolo TCP: se um pacote é perdido, ele só é reenviado.
+
+    - A ideia é lidar com várias exceções com um único pedaço de código.
+
+    - Para a maioria dos programas, se ocorre um erro de I/O enquanto está lendo ou escrevendo em um arquivo aberto, ou se um socket não pode ser aberto, etc, não tem muito o que a aplicação pode fazer para resolver, então abortar o método com uma mensagem clara de qual é o erro é o melhor a se fazer.
+    - Mecanismos de recuperação adicionam uma complexidade considerável para o programa, mas recuperação de informação perdida é uma parte essencial do valor que o sistema provê para os seus usuários.
+
+    - A melhor maneira de eliminar casos especiais é projetar o caso normal de uma forma que lida automaticamente com os casos especiais sem nenhum código extra.
+    - Exemplo: editor de texto - detectar se tem ou não uma parte do texto selecionada.
+        - Inicialmente: variável de estado indicando se tem seleção ou não →gera vários if’s.
+        - Posteriormente: tira a variável de estado, ou seja, é considerado que sempre existe uma seleção (que pode ser vazia), então não é necessário código extra para lidar com exceções.
+
+    - Definir exceções ou mascará-las dentro de um módulo só faz sentido se as informações de exceção não são necessárias fora do módulo. Então essa exceção não irá se propagar para outros níveis e prejudicá-los.
+
+• Capítulo 11:
+    - Planejar um software é complicado → as ideias iniciais podem não ser as melhores, por isso é melhor você considerar múltiplas opções.
+    - Você pode tentar abordagens radicalmente diferentes → mais aprendizado do que funciona e do que não funciona.
+    - Fazer testes, fazer lista de prós e contras.
+        - Uma alternativa tem uma interface mais simples do que a outra?
+        - Uma das interfaces é mais de propósito geral do que a outra?
+        - Uma das interfaces tem uma implementação mais eficiente do que a outra?
+
+• Capítulo 12:
+# Why Write Comment? The Four Excuses
+
+- Comentários são essenciais para ajudar os desenvolvedores a entender o sistema e trabalhar de forma eficiente.
+
+## Good code is self-documenting
+
+- MITO: se um código está bem escrito, não precisa de comentários.
+- É possível que um desenvolvedor entenda o comportamento de uma classe abstrata apenas lendo o seu código, mas em um sistema grande e complexo, o desenvolvedor teria que entender o funcionamento de diversos métodos diferentes.
+- Se usuários tem que ler o código de um método para entender como usa-lo, então não há abstração, toda a complexidade do método está exposta.
+- Sem comentários, a única abstração de um método é sua declaração.
+
+## I don’t have time to write comments
+
+- Entre documentar um código e lançar uma nova funcionalidade:
+    - Muitos escolheriam lançar uma nova funcionalidade, mas normalmente projetos de desenvolvimento de software sempre precisam seguir prazos que podem ser apertados. Se você nunca priorizar a documentação, nunca haverá documentação.
+- Boa documentação é muito importante para a manutenção do código.
+
+## Comments get out of date and become misleading
+
+- Manter a documentação atualizada não exige muito esforço.
+- Grandes mudanças de documentação são necessárias apenas se houve grande mudança no código.
+- A ideia por trás de comentários é capturar informação que estão na mente do designer mas não não pode ser representado em código.
+- Sem documentação, futuros desenvolvedores terão que entender as ideias do desenviolvedor que projetou o código, o que toma tempo extra e abre espaço para bugs se o novo desenvolvedor não entender as intenções do designer original.
+- Comentários são importantes até mesmo quando o designer original que faz mudanças no código, depois de semanas ele provavelmente terá esquecido os detalhes do código.
+- Boa documentação rediz cognitive load e unknown unknowns.
+
+
+
+• Capítulo 13:
+# Comments Should Describe Things that Aren’t Obvious from the Code
+
+- A razão para escrever comentários é que os comandos em uma linguagem de programação não podem capturar todas as informações importantes que estavam na mente do desenvolvedor quando o código foi escrito.
+- Comentários podem dar uma visão de mais alto-nível. Mesmo que uma informação possa ser deduzida ao ler o código, nós não queremos forçar usuários de um módulo a fazer isso, isso consome muito tempo e os força a considerar um monte de informação que não é necessária para o uso do módulo.
+- Desenvolvedores devem ser capazes de entender a abstração dada por um módulo sem ler nenhum código além de suas declarações visíveis externamente.
+
+## Pick conventions
+
+- Primeiro passso: decidir convenções para comentários, como o formato.
+    - Consistência: Facilidade para ler e entender.
+- A maioria dos comentários é sobre:
+    - Interface;
+    - Membro de uma estrutura de dados;
+    - Comentário dentro de um método ou função (implementação);
+    - Comentário descrevendo dependências que cruza módulos
+
+## Don’t repeat the code
+
+- Infelizmente a maioria dos comentários não são úteis: eles repetem o código, i.e., todas as informações no comentário podem ser facilmente deduzidas pelo código próximo ao comentário.
+- Outro erro comum é usar as mesmas palavras que aparecem no nome da entidade sendo documentada no comentário.
+- **Comentários que apenas repetem o código é uma red flag.**
+
+## Lower-level comments add precision
+
+- Alguns comentários dão informações de mais baixo-nível, e outros de mais alto-nível.
+- Mais baixo-nível
+    - Mais detalhes, adicionam precisão.
+    - Quais são as unidades dessa variável
+    - Um valor `null` é permitido
+    - Há certas propriedades que são sempre verdadeiras para a variável (invariantes).
+- Os comentários também não podem ser vagos.
+- Quando for documentar variáveis, pensar em substantivos e não verbos, ou seja, focar no que a variável representa e não como é manipulada.
+
+## Higher-lever comments enhance intuition
+
+- Omite detalhes e ajuda o leitor a entender a intenção e estrutura geral do código.
+    - Usado principalmente dentro de métodos.
+- As vezes comentários de baixo-nível acabam repetindo o código e não explicam o propósito geral do código.
+
+## Interface documentation
+
+- Se você quer que o código apresente boas abstrações, você deve documentar essas abstrações com comentários.
+- Separar comentários de interface de comentários de implementação.
+    - **Comentários de interface** dão informação que uma pessoa precisa para usar uma classe ou método (define a abstração), sem precisar dar detalhes da implementação.
+    - **Comentários de implementação** descreve como uma classe ou método funcionam internamente.
+- **Uma documentação de interface que descreve detalhes da implementação que não são necessários para usa-la é uma redflag.**
+
+## Implementation comments: what and why, not how
+
+- O objetivo principal desse tipo de comentário é ajudar os leitores a entender **o que** o código está fazendo (**e não como**).
+- Métodos pequenos: as vezes não tem necessidade.
+- Métodos longos: comentar a cada bloco de código que faz coisas diferentes (como parte da tarefa geral do método).
+- Esses comentários também podem explicar o por que.
+
+## Cross-module design decisions
+
+- Dificuldade: achar o local correto para colocar o comentário.
+- Uma opção é duplicar o comentário.
+- Alternativamente você pode deixar o comentário em um lugar só, mas caso o desenvolvedor precise dele, não saber onde procurar.
+- Você pode documentar em um arquivo central, como alguma chamado `designNotes`.
+    - A documentação é mais fácil de ser acessada e evita duplicação de comentários.
+
+- Comentários devem descrever coisas que não são óbvias no código, ou seja, “óbvio” na perspectiva de alguém que está lendo o código pela primeira vez.
