@@ -2,7 +2,8 @@ using Random
 using Plots
 
 function gerar_aposta(numeros::Int) ::Vector{Int}
-    return sort(rand(1:60, numeros))
+    aposta = sort!(unique(rand(1:60, 60))[1:numeros])
+    return aposta
 end
 
 function simular_apostas(numeros_selecionados::Vector{Int}, max_numeros::Int) :: Int64
