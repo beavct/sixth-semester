@@ -2,6 +2,7 @@ using Random
 using Plots
 
 function gerar_aposta(numeros::Int) ::Vector{Int}
+    # Gera uma aposta de tamanho numeros, sem números repetidos 
     aposta = sort!(unique(rand(1:60, 60))[1:numeros])
     return aposta
 end
@@ -17,21 +18,8 @@ function simular_apostas(numeros_selecionados::Vector{Int}, max_numeros::Int) ::
         # Chama a função gerar_aposta com um número aleatório entre 6 e max_numeros
         aposta = gerar_aposta(rand(6:max_numeros))
         
-        
-        # Assume que acertou, até provar o contrário
-        acertou = true  
-        
-        # Comparar se todos os números selecionados estão na aposta
-        for num in numeros_selecionados
-            #= 
-                Se o número gerado aleatóriamente não está na aposta correta, 
-                então o gerador de apostas não acertou
-            =#
-            if !(num in aposta)
-                acertou = false  
-                break  
-            end
-        end
+        # Verifica se todos os números da aposta estão em numeros_selecionados
+        acertou = all(num -> num in aposta, numeros_selecionados)
     end
     
     return total_apostas
@@ -41,19 +29,15 @@ function plota_grafico(resultados::Vector{Int})
     # Plotar os resultados
 
     # Definir intervalos
-    intervalos = [0, 10000, 100000, 1000000, 10000000, 100000000]
+    intervalos = [0, 10_000, 100_000, 1_000_000, 10_000_000, 100_000_000]
     x_label = ["10^0", "10^4", "10^5", "10^6", "10^7", "10^8"]
-    frequencias_intervalos = zeros(Int, length(intervalos) - 1)
+    frequencias_intervalos = zeros(Int, length(intervalos))
 
     # Contar as frequências em intervalos
     for resultado in resultados
         for i in 1:length(intervalos)-1
             if resultado >= intervalos[i] && resultado < intervalos[i+1]
                 frequencias_intervalos[i] += 1
-            end
-
-            if resultado >= intervalos[end]
-                frequencias_intervalos[end] += 1
             end
         end
     end
@@ -75,7 +59,7 @@ function main()
         Gera a resposta correta.
         A resposta possui de 6 a max_numeros, que estão entre 1 e 60.
     =#
-    numeros_selecionados = sort(rand(1:60, rand(6:max_numeros)))
+    numeros_selecionados = gerar_aposta(rand(6:max_numeros))
 
     # Inicializa um vetor de inteiros vazio para os resultados
     resultados = Int[]
@@ -83,7 +67,6 @@ function main()
     # Simulação das apostas
     for i in 1:num_simulacoes
         push!(resultados, simular_apostas(numeros_selecionados, max_numeros))
-        #println(resultados)
     end
 
     plota_grafico(resultados)
