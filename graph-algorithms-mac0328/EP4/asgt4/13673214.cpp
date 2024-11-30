@@ -172,18 +172,21 @@ void bfs_augmenting_path(Digraph &digraph, int source, int target, std::vector<i
             // Get arc information
             std::pair<Arc, bool> result = boost::edge(u, v, digraph);
 
-            bool saturated_arc = digraph[result.first].capacity <= digraph[result.first].current_flow;
-            bool positive_cap = digraph[result.first].capacity > 0;
-
-            // Only visit unvisited and non-saturated arcs
-            if (!visited[v] && !saturated_arc && (positive_cap))
+            if(result.second)
             {
-                visited[v] = true;
-                q.push(v);
-                S.insert(v);
+                bool saturated_arc = digraph[result.first].capacity <= digraph[result.first].current_flow;
+                bool positive_cap = digraph[result.first].capacity > 0;
 
-                // Update pred[v] = u
-                pred[v] = u;
+                // Only visit unvisited and non-saturated arcs
+                if (!visited[v] && !saturated_arc && (positive_cap))
+                {
+                    visited[v] = true;
+                    q.push(v);
+                    S.insert(v);
+
+                    // Update pred[v] = u
+                    pred[v] = u;
+                }
             }
         }
     }
