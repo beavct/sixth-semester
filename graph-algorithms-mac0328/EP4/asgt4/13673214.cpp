@@ -197,7 +197,7 @@ void bfs_augmenting_path(Digraph &digraph, int source, int target, std::vector<i
 // Runs in time O((n+m)nm)
 // Ford-Fulkerson algorithm + shortes st-augmenting path
 // In the end of lecture 25
-std::pair<int, int> edmonds_karp(Geral_Data &data)
+void edmonds_karp(Geral_Data &data)
 {
     std::vector<bool> visited(data.n_vertices);
     std::vector<int> pred(data.n_vertices, 0);
@@ -265,13 +265,11 @@ std::pair<int, int> edmonds_karp(Geral_Data &data)
         {
             print_end_of_edmonds_karp(data, S);
             break;
-            // return (f,S)
         }
         
 
     } while (pred[data.target] != -1);
-    
-    return std::make_pair(-1, -1);
+
 }
 
 // Read digraph from input
