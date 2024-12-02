@@ -10,9 +10,8 @@ TEST_DIR := tests
 OUT_DIR := outs
 
 # Variáveis para entradas e saídas
-INPUTS=$(wildcard tests/in*)
-
-OUTS=$(INPUTS0:tests/in%=outs/out%)
+INPUTS=$(sort $(wildcard tests/in*))
+OUTS=$(INPUTS:tests/in%=tests/out%)
 
 .SECONDARY: $(OUTS) 
 
@@ -43,7 +42,8 @@ clean:
 test: $(OUTS)
 
 # Regras para processar entradas e gerar saídas para cada diretório
-outs/out%: tests/in% $(PROG)
+tests/out%: tests/in% $(PROG)
 	./$(PROG) < $< > $@
+
 
 -include $(DEPS)

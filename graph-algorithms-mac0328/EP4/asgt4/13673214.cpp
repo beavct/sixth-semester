@@ -82,7 +82,6 @@ void print_description_residual_capacities(Geral_Data &data, Digraph &residual_d
     }
 }
 
-// TEM QUE TERMINAR
 void print_end_of_edmonds_karp(Geral_Data &data, std::set<int>S){
 
     std::cout << 1 << " " << get_val_f(data) << " "<< S.size() << "\n";
@@ -109,7 +108,10 @@ void print_non_end_of_edmonds_karp(Digraph &residual_digraph, std::vector<std::p
 void built_residual_digraph_t(Geral_Data &data, Digraph &residual_digraph)
 {
     residual_digraph.clear();
-    residual_digraph = Digraph(data.n_vertices);
+    for (int i = 0; i < data.n_vertices; ++i)
+    {
+        boost::add_vertex(residual_digraph);
+    }
 
     // D_^   
     for (const auto& e : boost::make_iterator_range(edges(data.digraph)))
@@ -265,7 +267,7 @@ void edmonds_karp(Geral_Data &data)
         {
             print_end_of_edmonds_karp(data, S);
             break;
-        }
+            }
         
 
     } while (pred[data.target] != -1);
