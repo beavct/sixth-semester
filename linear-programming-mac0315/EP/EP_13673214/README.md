@@ -6,6 +6,9 @@ Este programa resolve o problema de fluxo mínimo em um digrafo, utilizando o m�
     Nome: Beatriz Viana Costa
     NUSP: 13673214
 
+## Requisitos:
+- Biblioteca graphviz para a geração da imagem PNG. 
+
 ## Descrição do Problema
 
 O objetivo deste programa é encontrar a solução ótima para um problema de fluxo mínimo em um digrafo. O algoritmo considera as demandas dos vértices, as arestas do digrafo, os fluxos existentes e a árvore inicial fornecida como entrada. O programa busca minimizar o fluxo total dos vértices enquanto respeita as restrições de capacidade das arestas.

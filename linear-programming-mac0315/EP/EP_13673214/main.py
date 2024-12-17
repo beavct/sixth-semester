@@ -242,7 +242,7 @@ def find_alpha(digraph: Digraph, entering_edge: Edge):
         if available_capacity < min_alpha:
             min_alpha = available_capacity
             limiting_edge = new_edge
-        elif available_capacity == min_alpha and limiting_edge.is_basic and not new_edge.is_basic:
+        elif available_capacity == min_alpha and (limiting_edge.is_basic or limiting_edge.head==-1) and not new_edge.is_basic:
             limiting_edge = new_edge
 
         return min_alpha, limiting_edge
