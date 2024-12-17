@@ -1,9 +1,0 @@
-• 2 -> 1 pertence à base com fluxo 3
-• 3 -> 1 pertence à base com fluxo 13
-• 3 -> 2 não pertence à base com fluxo 0
-• 4 -> 2 pertence à base com fluxo 9
-• 5 -> 2 não pertence à base com fluxo 0
-• 5 -> 3 não pertence à base com fluxo 0
-• 4 -> 5 não pertence à base com fluxo 0
-• 6 -> 4 pertence à base com fluxo 3
-• 6 -> 5 pertence à base com fluxo 10
